@@ -27,6 +27,10 @@ COPY . .
 RUN pip3 install --upgrade pip && \
     pip3 install --no-cache-dir -r requirements.txt
 
+
+# COPY ./start_server.sh /
+RUN chmod +x /stockfish-socket-server/start_server.sh
+
 # Expose port 5000 and override entrypoint
 EXPOSE 5000
-ENTRYPOINT ["/bin/bash", "-l", "-c"]
+ENTRYPOINT ["/bin/bash", "-l", "/stockfish-socket-server/start_server.sh"]
